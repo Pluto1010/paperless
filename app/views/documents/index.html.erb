@@ -1,25 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="large-12 columns">
+    <p id="notice"><%= notice %></p>
+    <h1>Listing Documents</h1>
 
-<h1>Listing Documents</h1>
+    <%= link_to 'New Document', new_document_path, class: 'button expand' %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <ul class="small-block-grid-3">
+        <% @documents.each do |document| %>
+          <li class="document-box">
+            <%= link_to image_path(document.attachment.url), title: "Title", class: 'th', data: {
+                    caption: "<strong>Lorem   ipsum dolor</strong> sit amet, consetetur sadipscing"
+                  } do %>
+                <div mag-thumb="inner">
+                  <%= image_tag document.attachment.url(:small), alt: 'Alt Image Text' %>
+                </div>
+                <div mag-zoom="inner">
+                  <%= image_tag document.attachment.url(:large), alt: 'Alt Image Text' %>
+                </div>
+              <% end %>
 
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <%= link_to document, class: 'tiny button split secondary expand' do %>
+              Show <span data-dropdown="drop"></span>
+            <% end %>
+            <br>
+            <ul id="drop" class="f-dropdown" data-dropdown-content>
+              <li></li>
+              <li><%= link_to 'Edit', edit_document_path(document) %></li>
+              <li><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </li>
+        <% end %>
+    </ul>
+    <div class="clear"></div>
 
-<br>
-
-<%= link_to 'New Document', new_document_path %>
+  </div>
+</div>

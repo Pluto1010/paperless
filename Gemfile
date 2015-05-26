@@ -15,6 +15,12 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'foundation-rails'
+gem "paperclip", "~> 4.2"
+gem 'rmagick', '2.13.2'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'pry'
+gem "bower-rails", "~> 0.9.2"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
