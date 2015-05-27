@@ -65,38 +65,5 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
-    echo 'deb http://packages.elastic.co/elasticsearch/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
-
-    sudo apt-get update
-    sudo apt-get install -y openjdk-7-jre supervisor htop
-
-    cd /opt
-
-    function checkTika {
-      echo 'ac0b1207284b7bd591acb0b7453081cbb1ea143c650678927ffe1463be659305  tika-server-1.8.jar' | sha256sum -c
-      return $?
-    }
-
-    if ! checkTika; then
-      wget --progress=bar:force -O tika-server-1.8.jar http://repo1.maven.org/maven2/org/apache/tika/tika-server/1.8/tika-server-1.8.jar
-
-      checkTika
-    fi;
-
-    cd /
-    cat <<EOF > /usr/local/bin/tika-rest-server
-#!/bin/bash
-exec java  -jar /opt/tika-server-1.8.jar "\\$@"
-EOF
-    chmod +x /usr/local/bin/tika-rest-server
-
-    cat <<EOF > /etc/supervisor/conf.d/tika.conf
-[program:tika]
-command=/usr/local/bin/tika-rest-server -h 0.0.0.0 -C all
-redirect_stderr=true
-EOF
-    service supervisor restart
-  SHELL
+  config.vm.provision "shell", path: "provision.sh"
 end
