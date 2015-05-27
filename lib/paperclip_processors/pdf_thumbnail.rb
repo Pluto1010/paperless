@@ -25,7 +25,7 @@ module Paperclip
 
       # correct
       image.trim!
-      image = image.sharpen
+      #image = image.sharpen
 
       # resize
       geometry = @options[:geometry]

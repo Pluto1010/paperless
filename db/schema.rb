@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525114900) do
+ActiveRecord::Schema.define(version: 20150527061700) do
 
   create_table "documents", force: :cascade do |t|
     t.datetime "created_at",              null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150525114900) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.text     "text"
   end
 
   create_table "tags", force: :cascade do |t|

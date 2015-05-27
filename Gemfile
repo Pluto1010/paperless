@@ -21,6 +21,7 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'pry'
 gem "bower-rails", "~> 0.9.2"
+gem 'pdf-reader', '~> 1.3.3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

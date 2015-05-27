@@ -1,4 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="large-12 columns">
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+    <ul class="button-group radius">
+      <li><%= link_to 'Download', @document.attachment.url, class: 'button'%></li>
+      <li>
+        <%= link_to edit_document_path(@document), class: 'button split secondary ' do %>
+          Edit <span data-dropdown="drop"></span>
+        <% end %>
+        <br>
+        <ul id="drop" class="f-dropdown" data-dropdown-content>
+          <li><%= link_to 'Destroy', @document, class: '', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </li>
+    </ul>
+
+    <form>
+      <input type="text" class="document-tags"/>
+    </form>
+    <%= image_tag @document.attachment.url(:large) %>
+  </div>
+</div>
+
+

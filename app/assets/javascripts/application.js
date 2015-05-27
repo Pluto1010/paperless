@@ -10,10 +10,22 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery/dist/jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
+//(disabled) require turbolinks
+//= require jquery-zoom/jquery.zoom
+//= require jquery-tag-editor/jquery.tag-editor
 //= require_tree .
 
+/**
+* Unifies event handling across browsers
+*
+* - Allows registering and unregistering of event handlers
+* - Injects event object and involved DOM element to listener
+*
+* @author Mark Rolich <mark.rolich@gmail.com>
+*/
+
 $(function(){ $(document).foundation(); });
+

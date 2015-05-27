@@ -2,35 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.document-gallery {
-
+div.tag-editor-tag.active input[type=text] {
+  height: 1.5em;
 }
-
-// .document-box {
-//   display: block;
-//   float: left;
-//   margin-right: 5px;
-//   margin-top: 5px;
-//   padding: 1em;
-//   background-color: black;
-
-//   overflow: none;
-
-//   img {
-//     width: 425px;
-//     height: 300px;
-//     margin-bottom: 1em;
-//   }
-
-//   .controls {
-//     background-color: black;
-//     display: block;
-//     border-top: 1px solid #333;
-//     width: 100%;
-//     padding-top: .5em;
-//     a {
-//       color: white;
-//     }
-//   }
-// }
