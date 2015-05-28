@@ -7,5 +7,7 @@ $(document).ready ->
     $(this).zoom url: $('img', this).data('big')
     return
 
-  $('input.document-tags').tagEditor placeholder: 'Enter tags ...'
+  $('input.document-tags').tagEditor
+    placeholder: 'Enter tags ...',
+    autocomplete: { 'source': '/tags/autocomplete', minLength: 3 }
   return

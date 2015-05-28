@@ -15,6 +15,7 @@
 //= require foundation
 //(disabled) require turbolinks
 //= require jquery-zoom/jquery.zoom
+//= require autocomplete-rails
 //= require jquery-tag-editor/jquery.tag-editor
 //= require_tree .
 
