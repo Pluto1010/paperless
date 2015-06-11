@@ -15,9 +15,15 @@
       </li>
     </ul>
 
+    <%= form_for @document do |f| %>
+      <%#= f.label :tag_name %>
+      <%#= f.autocomplete_field :text, autocomplete_tag_name_documents_path %>
+    <% end %>
+
     <form>
       <input type="text" class="document-tags"/>
     </form>
+
     <%= image_tag @document.attachment.url(:large) %>
   </div>
 </div>

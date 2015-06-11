@@ -4,12 +4,24 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @search_document = Document.new
+
+    @search_param_tag_ids = []
+    if not params[:document].nil?
+      @search_param_tag_ids = params[:document][:tag_ids].reject(&:blank?)
+    end
+
+    if @search_param_tag_ids.count == 0
+      @documents = Document.all
+    else
+      @documents = Document.filter_by_tag_ids(@search_param_tag_ids)
+    end
   end
 
   # GET /documents/1
   # GET /documents/1.json
   def show
+    #binding.pry
   end
 
   # GET /documents/new

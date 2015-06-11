@@ -1,10 +1,25 @@
+<% content_for :sidebar do %>
+  <%= form_for @search_document, method: :GET, html: { data: { :turboform => "true" } } do |f| %>
+    <ul class="tag-list">
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
+      <li>
+        <%= b.check_box %><%= b.label %>
+      </li>
+    <% end %>
+    </ul>
+    <%= f.submit 'Filter', class: 'button success expand tiny' %>
+  <% end %>
+  <!-- <div class="tag-input">
+    <input type="text" placeholder="Enter tags..."/>
+  </div> -->
+  <!-- <div class="loader small hide">Loading...</div>
+  <ul class="results no-bullet">
+  </ul> -->
+<% end %>
+
 <div class="row">
   <div class="large-12 columns">
     <p id="notice"><%= notice %></p>
-    <h1>Listing Documents</h1>
-
-    <%= link_to 'New Document', new_document_path, class: 'button expand' %>
-
     <ul class="small-block-grid-2"-->
       <% @documents.each do |document| %>
       <li class="document-box">

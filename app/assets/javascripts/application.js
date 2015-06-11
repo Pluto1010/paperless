@@ -13,10 +13,9 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
 //= require foundation
-//(disabled) require turbolinks
+//= require turbolinks
 //= require jquery-zoom/jquery.zoom
-//= require autocomplete-rails
-//= require jquery-tag-editor/jquery.tag-editor
+
 //= require_tree .
 
 /**
@@ -30,3 +29,34 @@
 
 $(function(){ $(document).foundation(); });
 
+Akten = (function() {
+  var actions = {};
+
+  function register_action(page, action_func) {
+    actions[page] = action_func;
+  }
+
+  function run(page) {
+    actions[page]();
+  }
+
+  return {
+    'action': register_action,
+    'run': run
+  }
+})();
+
+Akten.action('documents#index', function() {
+  $('ul.tag-list input[type=checkbox]').click(function() {
+    $(this).parents('form').submit();
+  });
+});
+
+$(function(){
+  Akten.run($('body').data('page'));
+});
+
+// $(document).on("submit", "form[data-turboform]", function(e) {
+//     Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
+//     return false;
+// });

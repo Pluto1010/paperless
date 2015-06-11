@@ -61,6 +61,29 @@ class TagsController < ApplicationController
     end
   end
 
+  def autocomplete
+    search = params[:search]
+    render :json => json_for_autocomplete(Tag.where('name LIKE ?', "%#{search}%"), 'name', [
+      'created_at'
+    ])
+  end
+
+  #
+  # Returns a hash with three keys actually used by the Autocomplete jQuery-ui
+  # Can be overriden to show whatever you like
+  # Hash also includes a key/value pair for each method in extra_data
+  #
+  def json_for_autocomplete(items, method, extra_data=[])
+    items.collect do |item|
+      hash = {"id" => item.id.to_s, "label" => item.send(method), "value" => item.send(method), "icon" => item.icon }
+      extra_data.each do |datum|
+        hash[datum] = item.send(datum)
+      end if extra_data
+      # TODO: Come back to remove this if clause when test suite is better
+      hash
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag

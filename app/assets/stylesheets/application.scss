@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *
+ */
+
+@import "foundation_and_overrides";
+
+@import "spinner";
+
+aside {
+  background: $topbar-bg-color;
+  color: white;
+  left: 0;
+  top: $topbar-height;
+  bottom: 0;
+  padding: 10px;
+  position: fixed;
+  width: 300px;
+  overflow-y: scroll;
+
+  @media #{$small-up} {
+    h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+  }
+
+  ul.tag-list {
+    list-style: none;
+    li {
+      clear:both;
+
+      &.highlight {
+        background-color: scale-color($sidebar-bg-color, $lightness: 50%);
+      }
+
+      label {
+        color: $sidebar-font-color;
+      }
+
+      padding: 0 rem-calc(8);
+
+      input {
+
+      }
+      a {
+        color: scale-color($sidebar-bg-color, $lightness: 20%);
+
+        &:hover {
+          color: scale-color($sidebar-bg-color, $lightness: 50%);
+        }
+      }
+
+    }
+  }
+}
+
+main {
+  float: left;
+  margin-left: 320px;
+  padding: 10px;
+  width: -moz-calc(100% - #{320px});
+  width: -webkit-calc(100% - #{320px});
+  width: -o-calc(100% - #{320px});
+  width: calc(100% - #{320px});
+}
+
+@media #{$small-up} {
+  select.tags {
+    display: none;
+  }
+
+  div.tags {
+    span.label {
+      margin-right: 2px;
+      cursor: pointer
+    }
+  }
+
+  .tag-input {
+    border-bottom: 1px dashed scale-color($sidebar-bg-color, $lightness: 50%);
+
+    input {
+      color: white;
+      border: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      background: none;
+      margin: 0;
+      font-size: 1rem;
+
+      &:focus {
+        background: none;
+      }
+    }
+  }
+}

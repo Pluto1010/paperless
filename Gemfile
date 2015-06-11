@@ -14,15 +14,27 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'foundation-rails'
+# gem "modernizr-rails", git: "https://github.com/russfrisch/modernizr-rails.git", tag: "v2.8.0"
 gem "paperclip", "~> 4.2"
 gem 'rmagick', '2.13.2'
 gem 'better_errors'
 gem 'binding_of_caller'
-gem 'pry'
-gem "bower-rails", "~> 0.9.2"
-gem 'pdf-reader', '~> 1.3.3'
-gem 'rails-jquery-autocomplete'
+
+gem 'elasticsearch-model', '~> 0.1.7'
+gem 'elasticsearch-rails', '~> 0.1.7'
+
+#gem "ember-cli-rails"
+
+gem 'bower-rails'
+
+group :development do
+  gem 'pry'
+  # gem "guard"
+  # gem 'guard-livereload', '~> 2.4', require: false
+  # gem "rack-livereload"
+end
+
+#gem "elasticsearch-persistence", require: 'elasticsearch/persistence/model', '~> 0.1.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -32,6 +44,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'foundation-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

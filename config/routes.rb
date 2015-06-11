@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :tags
+  resources :tags do
+    collection do
+      get '/autocomplete/:search', action: :autocomplete, as: 'autocomplete'
+    end
+  end
   resources :documents
 
-  get '/', to: redirect('/documents')
+  get '/' => 'documents#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
