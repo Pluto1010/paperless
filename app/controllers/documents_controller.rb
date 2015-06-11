@@ -12,9 +12,9 @@ class DocumentsController < ApplicationController
     end
 
     if @search_param_tag_ids.count == 0
-      @documents = Document.all
+      @documents = Document.by_date
     else
-      @documents = Document.filter_by_tag_ids(@search_param_tag_ids)
+      @documents = Document.filter_by_tag_ids(@search_param_tag_ids).by_date
     end
   end
 

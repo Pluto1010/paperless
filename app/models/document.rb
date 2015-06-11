@@ -15,6 +15,8 @@ class Document < ActiveRecord::Base
 
   after_commit :extract_text_from_pdf
 
+  scope :by_date, -> { order('created_at DESC, id DESC') }
+
   def self.filter_by_tag_ids(tag_ids)
     document_ids = nil;
 
