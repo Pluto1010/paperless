@@ -7,8 +7,11 @@ update-rc.d chef-client disable
 service puppet stop
 update-rc.d puppet disable
 
-sudo apt-get update
-sudo apt-get install -y openjdk-7-jre default-jre-headless supervisor htop elasticsearch
+if [ "$[$(date +%s) - $(stat -c %Z /var/lib/apt/periodic/update-success-stamp)]" -ge 86400 ]; then
+  apt-get update
+fi
+
+apt-get install -y openjdk-7-jre default-jre-headless supervisor htop elasticsearch
 
 cd /opt
 
@@ -26,17 +29,18 @@ fi;
 cd /
 cat <<EOF > /usr/local/bin/tika-rest-server
 #!/bin/bash
-exec java -Xms8m -Xmx24m -XX:MaxPermSize=24m -jar /opt/tika-server-1.8.jar "\\$@"
+exec java -Xms8m -Xmx24m -XX:MaxPermSize=24m -jar /opt/tika-server-1.8.jar -h 0.0.0.0 -C all
 EOF
     chmod +x /usr/local/bin/tika-rest-server
 
     cat <<EOF > /etc/supervisor/conf.d/tika.conf
 [program:tika]
-command=/usr/local/bin/tika-rest-server -h 0.0.0.0 -C all
+command=/usr/local/bin/tika-rest-server
 redirect_stderr=true
 EOF
 
 supervisorctl stop tika
+service supervisor stop
 service supervisor restart
 supervisorctl start tika
 
