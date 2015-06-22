@@ -13,7 +13,6 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require jquery-zoom/jquery.zoom
 
 //= require_tree .

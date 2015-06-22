@@ -69,13 +69,29 @@ aside {
 main {
   float: left;
   margin-left: 320px;
-  padding: 10px;
-  margin-top: 1em;
   width: -moz-calc(100% - #{320px});
   width: -webkit-calc(100% - #{320px});
   width: -o-calc(100% - #{320px});
   width: calc(100% - #{320px});
 }
+
+// main {
+//   float: left;
+//   margin-left: 285px;
+//   padding: 0;
+//   width: -moz-calc(100% - #{270px});
+//   width: -webkit-calc(100% - #{270px});
+//   width: -o-calc(100% - #{270px});
+//   width: calc(100% - #{270px});
+
+//   position: relative;
+//   height: -moz-calc(100% + #{$topbar-height});
+//   height: -webkit-calc(100% + #{$topbar-height});
+//   height: -o-calc(100% + #{$topbar-height});
+//   height: calc(100% + #{$topbar-height});
+//   overflow-y: scroll;
+// }
+
 
 @media #{$small-up} {
   select.tags {

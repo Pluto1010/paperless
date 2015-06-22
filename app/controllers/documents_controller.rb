@@ -21,7 +21,9 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    #binding.pry
+    respond_to do |format|
+      format.json { render :show }
+    end
   end
 
   # GET /documents/new
@@ -52,13 +54,45 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /documents/1
   # PATCH/PUT /documents/1.json
   def update
-    respond_to do |format|
-      if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
-      else
-        format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+    local_document_params = document_params.dup
+    local_document_params[:tags] .reject! { |c| c.empty? }
+
+    tag_ids_to_remove = tag_ids_to_add = []
+
+    if @document.tags
+      existing_tag_ids = @document.tags.pluck(:id)
+      puts "<--"
+      puts existing_tag_ids
+      puts "-->"
+      tag_ids_to_remove = existing_tag_ids - local_document_params[:tags]
+      tag_ids_to_add = local_document_params[:tags] - existing_tag_ids
+
+      puts tag_ids_to_remove
+      puts tag_ids_to_add
+
+      # remove :tags param for ORM
+      local_document_params.delete(:tags)
+    end
+
+    ActiveRecord::Base.transaction do
+      tag_ids_to_remove.each do |tag_id|
+        @document.tags.delete tag_id
+      end
+
+      tag_ids_to_add.each do |tag_id|
+        @document.tags << Tag.find(tag_id)
+      end
+
+      @document.save!
+
+      respond_to do |format|
+        if @document.update(local_document_params)
+          format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully updated.' }
+          format.json { render :show, status: :ok, location: @document }
+        else
+          format.html { render :edit }
+          format.json { render json: @document.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -81,6 +115,9 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params[:document].permit(:attachment)
+      puts "<--"
+      puts params
+      puts "-->"
+      params.require(:document).permit(:attachment, tags: []) if params[:document]
     end
 end

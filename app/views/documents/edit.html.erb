@@ -1,6 +1,28 @@
-<h1>Editing Document</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @document %> |
-<%= link_to 'Back', documents_path %>
+<% content_for :sidebar do %>
+  <h3>Editing Document</h3>
+  <%= form_for @document, :html => { :multipart => true } do |f| %>
+    <%= f.submit 'Speichern', class: 'button success expand tiny' %>
+    <ul class="tag-list">
+    <%= f.collection_check_boxes :tags, Tag.all, :id, :name, checked: @document.tags.pluck(:id) do |b| %>
+      <li>
+        <%= b.check_box %><%= b.label %><span class="round label document_count"><%= Tag.find(b.value).documents.count %></span>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+<% content_for :context_controls do %>
+  <li><%= link_to 'Download', @document.attachment.url, class: ''%></li>
+  <li><%= link_to 'Delete', @document, class: 'alert', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+<div class="row">
+  <div class="large-12 columns">
+    <p id="notice" class="<% if notice.nil? %>hide<%else%>alert-box<% end %>" style="margin-bottom: 0"><%= notice %></p>
+    <object data="<%= @document.attachment.url %>#toolbar=1&navpanes=1&scrollbar=1&page=1&view=fitH"
+        type="application/pdf"
+        width="100%"
+        height="735px">
+      <p>It appears you don't have a PDF plugin for this browser. No biggie... you can <%= link_to 'click here to download the PDF file.', @document.attachment.url %></p>
+    </object>
+  </div>
+</div>

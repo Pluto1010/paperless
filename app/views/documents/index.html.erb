@@ -1,5 +1,5 @@
 <% content_for :sidebar do %>
-  <%= form_for @search_document, method: :GET, html: { data: { :turboform => "true" } } do |f| %>
+  <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
     <ul class="tag-list">
     <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
       <li>
@@ -23,21 +23,14 @@
     <ul class="small-block-grid-2"-->
       <% @documents.each do |document| %>
       <li class="document-box">
-        <%= link_to document do %>
+        <span class="label"><%= document.created_at %></span>
+        <%= link_to edit_document_path(document) do %>
         <div class="document">
           <%= image_tag document.attachment.url(:small), alt: 'Alt Image Text', data: {
             'big': document.attachment.url(:large)
           } %>
         </div>
         <% end %>
-        <%= link_to document, class: 'tiny button split secondary expand' do %>
-          Show <span data-dropdown="drop"></span>
-        <% end %>
-        <br>
-        <ul id="drop" class="f-dropdown" data-dropdown-content>
-          <li><%= link_to 'Edit', edit_document_path(document) %></li>
-          <li><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-        </ul>
       </li>
       <% end %>
     </ul>
