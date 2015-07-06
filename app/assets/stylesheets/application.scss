@@ -17,7 +17,8 @@
 
 @import "foundation_and_overrides";
 
-@import "spinner";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 aside {
   background: $topbar-bg-color;
@@ -122,4 +123,17 @@ main {
       }
     }
   }
+}
+
+.tags {
+  @include label(
+    // This options sets label padding
+    $padding:7px 16px 9px,
+    // This option sets label text-size
+    $text-size:13px,
+    // This option sets label background-color
+    $bg:#2ba6cb,
+    // This option sets the radius of the label
+    $radius:4px
+  );
 }

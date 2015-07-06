@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :create_new_tag]
+  before_action :set_tag, only: [:edit, :create_new_tag]
 
   # GET /documents
   # GET /documents.json
@@ -43,6 +44,20 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.json { render :show, status: :created, location: @document }
+      else
+        format.html { render :new }
+        format.json { render json: @document.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def add_new_tag
+    tag = Tag.create tag_params
+
+    respond_to do |format|
+      if @document.save
+        format.html { redirect_to edit_document_path(@document), notice: 'Tag was successfully added.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -119,5 +134,13 @@ class DocumentsController < ApplicationController
       puts params
       puts "-->"
       params.require(:document).permit(:attachment, tags: []) if params[:document]
+    end
+
+    def set_tag
+      @tag = Tag.new
+    end
+
+    def tag_params
+      params.require(:tag).permit(:name, :color, :icon)
     end
 end

@@ -1,7 +1,8 @@
 <% content_for :sidebar do %>
   <h3>Editing Document</h3>
+
   <%= form_for @document, :html => { :multipart => true } do |f| %>
-    <%= f.submit 'Speichern', class: 'button success expand tiny' %>
+    <%= f.submit 'Speichern', class: 'button success expand' %>
     <ul class="tag-list">
     <%= f.collection_check_boxes :tags, Tag.all, :id, :name, checked: @document.tags.pluck(:id) do |b| %>
       <li>
@@ -9,6 +10,32 @@
       </li>
     <% end %>
     </ul>
+  <% end %>
+
+  <h3>Create a tag</h3>
+  <%= form_for @tag, :html => { :multipart => true }, :url => { :action => :add_new_tag } do |f| %>
+    <% if @tag.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+        <ul>
+        <% @tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <div class="tag color-blue">
+        <i class="fa fa-camera-retro fa-lg"></i>
+        <%= f.text_field :color, class: 'left' %>
+        <%= f.text_field :icon, class: 'left' %>
+        <%= f.text_field :name, class: 'left' %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Create a new tag', class: 'button primary' %>
+    </div>
   <% end %>
 <% end %>
 <% content_for :context_controls do %>

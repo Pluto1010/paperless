@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:new, :create]
 
   # GET /tags
   # GET /tags.json
@@ -28,7 +29,14 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        if not @document.nil?
+          @document.tags << @tag
+          @document.save
+
+          format.html { redirect_to @document, notice: 'Tag was successfully created.' }
+        end
+
+        format.html { redirect_to @tag, notice: 'Tag was successfully created.' } if @document.nil?
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -85,6 +93,10 @@ class TagsController < ApplicationController
   end
 
   private
+    def set_document
+      @document = Document.find(params[:document_id]) unless params[:document_id].nil?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
       @tag = Tag.find(params[:id])

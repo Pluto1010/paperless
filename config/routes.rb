@@ -4,7 +4,11 @@ Rails.application.routes.draw do
       get '/autocomplete/:search', action: :autocomplete, as: 'autocomplete'
     end
   end
-  resources :documents
+  resources :documents do
+    member do
+      post 'add_new_tag'
+    end
+  end
 
   get '/' => 'documents#index'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610061902) do
+ActiveRecord::Schema.define(version: 20150628072622) do
 
   create_table "document_has_tags", force: :cascade do |t|
     t.integer  "document_id"
@@ -39,5 +39,7 @@ ActiveRecord::Schema.define(version: 20150610061902) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
 end

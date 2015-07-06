@@ -3,7 +3,7 @@
     <ul class="tag-list">
     <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
       <li>
-        <%= b.check_box %><%= b.label %>
+        <%= b.check_box %><%= b.label %><span class="round label document_count"><%= Tag.find(b.value).documents.count %></span>
       </li>
     <% end %>
     </ul>
