@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require select2
  *= require_tree .
  *= require_self
  *
@@ -20,60 +21,87 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-aside {
-  background: $topbar-bg-color;
-  color: white;
-  left: 0;
-  top: $topbar-height;
-  bottom: 0;
-  padding: 10px;
-  position: fixed;
-  width: 300px;
-  overflow-y: scroll;
+[class^='select2'] {
+  border-radius: 0px !important;
+}
 
-  @media #{$small-up} {
-    h1, h2, h3, h4, h5, h6 {
-      color: white;
-    }
-  }
+aside {
+  padding: 10px;
 
   ul.tag-list {
     list-style: none;
     li {
       clear:both;
+      padding: 0 rem-calc(8);
 
       &.highlight {
-        background-color: scale-color($sidebar-bg-color, $lightness: 50%);
+        //background-color: scale-color($sidebar-bg-color, $lightness: 50%);
       }
 
       label {
-        color: $sidebar-font-color;
+        //color: $sidebar-font-color;
       }
 
-      padding: 0 rem-calc(8);
-
-      input {
-
+      span.document_count {
+        margin-right: 1em;
       }
-      a {
-        color: scale-color($sidebar-bg-color, $lightness: 20%);
+    }
+  }
 
-        &:hover {
-          color: scale-color($sidebar-bg-color, $lightness: 50%);
-        }
+
+
+  .select2-container {
+    margin-bottom: 1em;
+
+    > a {
+      padding: rem-calc(8);
+    }
+
+    .select2-choice {
+      height: 2.3125rem;
+
+      > .select2-chosen {
+        padding-top: rem-calc(4);
       }
+    }
 
+    .select2-arrow {
+      b {
+        background-position-y: rem-calc(6);
+      }
     }
   }
 }
 
+@media #{$small-up} {
+  ul.tag-list {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+  }
+}
+@media #{$medium-up} {
+  ul.tag-list {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+}
+
+@media #{$large-up} {
+  ul.tag-list {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+  }
+}
+
+
 main {
-  float: left;
-  margin-left: 320px;
-  width: -moz-calc(100% - #{320px});
-  width: -webkit-calc(100% - #{320px});
-  width: -o-calc(100% - #{320px});
-  width: calc(100% - #{320px});
+  .document-image {
+    margin-top: 1em;
+    border: 1pt solid $sidebar-bg-color;
+  }
 }
 
 // main {

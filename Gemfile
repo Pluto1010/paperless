@@ -26,6 +26,7 @@ gem 'elasticsearch-rails', '~> 0.1.7'
 #gem "ember-cli-rails"
 
 gem 'bower-rails', '~> 0.9.2'
+gem 'select2-rails', '~> 3.5.9'
 
 group :development do
   gem 'pry'

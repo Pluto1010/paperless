@@ -27,14 +27,14 @@
           <!-- Right Nav Section -->
           <ul class="right">
             <%= yield :context_controls %>
-            <form>
+            <!-- <form>
             <li>
               <input type="text" name="search_query"/>
             </li>
             <li>
               <button>Suchen</button>
             </li>
-            </form>
+            </form> -->
           </ul>
 
           <!-- Left Nav Section -->
@@ -44,12 +44,12 @@
         </section>
       </nav>
     </div>
-
+    <main>
+      <p id="notice" class="<% if notice.nil? %>hide<%else%>alert-box<% end %>" style="margin-bottom: 0"><%= notice %></p>
+      <%= yield %>
+    </main>
     <aside>
       <%= yield :sidebar %>
     </aside>
-    <main>
-      <%= yield %>
-    </main>
   </body>
 </html>

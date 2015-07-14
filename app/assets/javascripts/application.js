@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery-zoom/jquery.zoom
+//= require select2
 
 //= require_tree .
 
@@ -36,6 +37,10 @@ Akten = (function() {
   }
 
   function run(page) {
+    if(typeof(actions[page]) !== 'function') {
+      return;
+    }
+
     actions[page]();
   }
 
