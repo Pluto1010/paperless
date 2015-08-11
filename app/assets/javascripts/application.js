@@ -15,7 +15,6 @@
 //= require foundation
 //= require jquery-zoom/jquery.zoom
 //= require select2
-
 //= require_tree .
 
 /**
@@ -27,40 +26,14 @@
 * @author Mark Rolich <mark.rolich@gmail.com>
 */
 
-$(function(){ $(document).foundation(); });
-
-Akten = (function() {
-  var actions = {};
-
-  function register_action(page, action_func) {
-    actions[page] = action_func;
-  }
-
-  function run(page) {
-    if(typeof(actions[page]) !== 'function') {
-      return;
-    }
-
-    actions[page]();
-  }
-
-  return {
-    'action': register_action,
-    'run': run
-  }
-})();
-
-Akten.action('documents#index', function() {
-  $('ul.tag-list input[type=checkbox]').click(function() {
-    $(this).parents('form').submit();
-  });
-});
-
 $(function(){
-  Akten.run($('body').data('page'));
-});
+  $(document).foundation();
 
-// $(document).on("submit", "form[data-turboform]", function(e) {
-//     Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
-//     return false;
-// });
+  $.extend($.expr[":"], {
+    'containsNC': function(elem, i, match, array) {
+      return (elem.textContent || elem.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
+
+  boxfile.run($('body').data('page'));
+});

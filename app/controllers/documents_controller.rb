@@ -5,17 +5,24 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
+    @right_menu_mode = :search
     @search_document = Document.new
 
     @search_param_tag_ids = []
     if not params[:document].nil?
       @search_param_tag_ids = params[:document][:tag_ids].reject(&:blank?)
+    else
+      if not session[:document_search_filter].nil?
+        @search_param_tag_ids = session[:document_search_filter]
+      end
     end
 
     if @search_param_tag_ids.count == 0
       @documents = Document.by_date
+      session[:document_search_filter] = nil
     else
       @documents = Document.filter_by_tag_ids(@search_param_tag_ids)
+      session[:document_search_filter] = @search_param_tag_ids
     end
   end
 

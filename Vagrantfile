@@ -12,7 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "boxfile/debian"
+  config.vm.box_url = "file://./support/packer/debian-8.1.0-amd64.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -48,7 +49,7 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = 512
+     vb.memory = 448
      vb.cpus = 2
   end
   #

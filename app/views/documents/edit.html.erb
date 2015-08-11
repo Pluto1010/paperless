@@ -1,6 +1,9 @@
-<% content_for :context_controls do %>
-  <li><%= link_to 'Download', @document.attachment.url, class: ''%></li>
-  <li><%= link_to 'Delete', @document, class: 'alert', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% content_for :rightoff do %>
+  <ul class="off-canvas-list fa-ul">
+    <li><label>Document actions</label></li>
+    <li><%= link_to 'Download', @document.attachment.url, class: ''%></li>
+    <li><%= link_to 'Delete', @document, class: 'alert', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
 <% end %>
 <% content_for :sidebar do %>
   <div class="rows">
@@ -36,7 +39,11 @@
 
         <div class="field">
           <div class="tag color-blue">
-            <%= f.text_field :color, class: 'left' %>
+            <%= f.select :color, nil, {}, class: 'color-select' do %>
+              <% Rails.configuration.tag_colors.each do |css_class, name| %>
+                <%= content_tag :option, name, value: css_class, data: { colorcssclass: css_class } %>
+              <% end %>
+            <% end %>
             <%= f.select :icon, nil, {}, { class: 'fa-select' } do %>
               <% Rails.configuration.font_awesome['icons'].each do |icon_name| %>
                 <%= content_tag :option, icon_name, value: icon_name, data: { icon: icon_name } %>
@@ -51,16 +58,26 @@
         <script type="text/javascript">
         <!--
         $(function() {
-          var formatFunction = function(icon) {
+          var fontAwesomeFormatFunction = function(icon) {
             var originalOption = icon.element;
-            console.log($(originalOption).data('icon'));
             return '<i class="fa fa-lg fa-' + $(originalOption).data('icon') + '"></i> ' + icon.text;
           };
 
           $('select.fa-select').select2({
             width: '100%',
-            formatResult: formatFunction,
-            formatSelection: formatFunction
+            formatResult: fontAwesomeFormatFunction,
+            formatSelection: fontAwesomeFormatFunction
+          });
+
+          var colorFormatFunction = function(icon) {
+            var originalOption = icon.element;
+            return '<i class="fa color color-' + $(originalOption).data('colorcssclass') + '"></i> ' + icon.text;
+          };
+
+          $('select.color-select').select2({
+            width: '100%',
+            formatResult: colorFormatFunction,
+            formatSelection: colorFormatFunction
           });
         });
         -->

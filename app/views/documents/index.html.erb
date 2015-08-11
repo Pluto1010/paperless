@@ -1,32 +1,50 @@
-<% content_for :sidebar do %>
-  <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
-    <ul class="tag-list">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
-      <li>
-        <%= b.check_box %><%= b.label %><span class="round label document_count"><%= Tag.find(b.value).documents.count %></span>
-      </li>
+<% content_for :rightoff do %>
+  <li class="has-form search">
+    <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
+    <div class="row collapse">
+      <div class="large-8 small-9 columns">
+        <input type="text" placeholder="Find Stuff">
+      </div>
+      <div class="large-4 small-3 columns">
+        <a href="#" class="button expand"><i class="fa fa-search fa-lg fa-fw"></i>Go</a>
+      </div>
+    </div>
     <% end %>
-    </ul>
-    <!--<%= f.submit 'Filter', class: 'button success expand tiny' %>-->
-  <% end %>
-  <!-- <div class="tag-input">
-    <input type="text" placeholder="Enter tags..."/>
-  </div> -->
-  <!-- <div class="loader small hide">Loading...</div>
-  <ul class="results no-bullet">
-  </ul> -->
+  </li>
+  <li class="has_form">
+    <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
+      <button type="submit" class="button expand apply" style="margin-bottom: 0">
+        <i class="fa fa-filter fa-lg fa-fw"></i>Apply filter
+      </button>
+      <ul class="off-canvas-list tags fa-ul">
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
+          <%= b.check_box %>
+          <li class="tag"><%= b.label %><span class="round label info document_count"><%= Tag.find(b.value).documents.count %></span></li>
+        <% end %>
+      </ul>
+      <ul class="off-canvas-list fa-ul">
+        <li>
+          <a href="#" class="button secondary expand clear"><i class="fa fa-remove fa-lg fa-fw"></i>Clear</a>
+        </li>
+      </ul>
+    <% end %>
+  </li>
+<% end %>
+
+<% content_for :title do %>
 <% end %>
 
 <div class="row">
   <div class="large-12 columns">
     <p id="notice"><%= notice %></p>
-    <ul class="small-block-grid-2"-->
+    <div class="small-12 text-center"><span class="round label info"><%= @documents.count %> documents</span><br/>&nbsp;</div>
+    <ul class="small-block-grid-1">
       <% @documents.each do |document| %>
       <li class="document-box">
-        <span class="label"><%= document.created_at %></span>
+        <span class="label info"><%= document.created_at %></span>
         <%= link_to edit_document_path(document) do %>
         <div class="document">
-          <%= image_tag document.attachment.url(:small), alt: 'Alt Image Text', data: {
+          <%= image_tag document.attachment.url(:small), size: '800', alt: 'Alt Image Text', data: {
             'big': document.attachment.url(:large)
           } %>
         </div>

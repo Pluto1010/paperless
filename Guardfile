@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
-directories %w(app lib config test frontend/app)
+directories %w(app lib config test)
 
 
 
@@ -32,6 +32,6 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
 
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
-  watch(%r{frontend/app/\w+/.+\.(js|hbs|html|css)})
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(s?css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
+  # watch(%r{frontend/app/\w+/.+\.(js|hbs|html|css)})
 end

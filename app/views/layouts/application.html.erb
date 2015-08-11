@@ -2,54 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "boxfile" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body data-page="<%= controller_name%>#<%= action_name %>">
-    <div class="fixed">
-      <nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/">boxfile</a></h1>
-          </li>
-           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
+    <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-        <section class="top-bar-section">
-          <!-- Right Nav Section -->
-          <ul class="right">
-            <%= yield :context_controls %>
-            <!-- <form>
-            <li>
-              <input type="text" name="search_query"/>
-            </li>
-            <li>
-              <button>Suchen</button>
-            </li>
-            </form> -->
-          </ul>
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+        <nav class="tab-bar top-bar" data-topbar>
+          <section class="middle tab-bar-section">
+            <%= link_to(root_path) do -%>
+            <i class="icon-boxfile"></i><h1 class="title">boxfile</h1><div><%= yield :title %></div>
+            <% end %>
+          </section>
 
-          <!-- Left Nav Section -->
-          <ul class="left">
-            <li><%= link_to 'New Document', new_document_path %></li>
+          <section class="right-small">
+            <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+          </section>
+        </nav>
+
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <%= yield :rightoff %>
+            <li><%= link_to raw('<i class="fa fa-upload fa-lg fa-fw"></i>Upload document'), new_document_path %></li>
           </ul>
+        </aside>
+
+        <section class="main-section">
+          <p id="notice" class="<% if notice.nil? %>hide<%else%>alert-box<% end %>" style="margin-bottom: 0"><%= notice %></p>
+          <%= yield %>
         </section>
-      </nav>
+
+        <a class="exit-off-canvas"></a>
+      </div>
     </div>
-    <main>
-      <p id="notice" class="<% if notice.nil? %>hide<%else%>alert-box<% end %>" style="margin-bottom: 0"><%= notice %></p>
-      <%= yield %>
-    </main>
-    <aside>
-      <%= yield :sidebar %>
-    </aside>
   </body>
 </html>

@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
+require 'atom'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -22,5 +22,47 @@ module Akten
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.tag_colors = {
+      crimson: 'Crimson',
+      red: 'Red',
+      darkred: 'DarkRed',
+      hotpink: 'HotPink',
+      deeppink: 'DeepPink',
+      mediumvioletred: 'MediumVioletRed',
+      lightsalmon: 'LightSalmon',
+      coral: 'Coral',
+      orangered: 'OrangeRed',
+      orange: 'Orange',
+      gold: 'Gold',
+      darkkhaki: 'DarkKhaki',
+      lavender: 'Lavender',
+      plum: 'Plum',
+      violet: 'Violet',
+      magenta: 'Magenta',
+      blueviolet: 'BlueViolet',
+      purple: 'Purple',
+      indigo: 'Indigo',
+      slateblue: 'SlateBlue',
+      darkslateblue: 'DarkSlateBlue',
+      lime: 'Lime',
+      limegreen: 'LimeGreen',
+      palegreen: 'PaleGreen',
+      mediumseagreen: 'MediumSeaGreen',
+      green: 'Green',
+      paleturquoise: 'PaleTurquoise',
+      darkturquoise: 'DarkTurquoise',
+      cadetblue: 'CadetBlue',
+      steelblue: 'SteelBlue',
+      lightsteelblue: 'LightSteelBlue',
+      skyblue: 'SkyBlue',
+      deepskyblue: 'DeepSkyBlue',
+      dodgerblue: 'DodgerBlue',
+      mediumblue: 'MediumBlue',
+      navy: 'Navy',
+      silver: 'Silver',
+      gray: 'Gray',
+      black: 'Black'
+    }
   end
 end

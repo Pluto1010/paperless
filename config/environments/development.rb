@@ -1,5 +1,5 @@
 Rails.application.configure do
-#  config.middleware.use Rack::LiveReload
+  config.middleware.use(Rack::LiveReload)
 
   # Settings specified here will take precedence over those in config/application.rb.
 

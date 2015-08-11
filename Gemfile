@@ -28,11 +28,13 @@ gem 'elasticsearch-rails', '~> 0.1.7'
 gem 'bower-rails', '~> 0.9.2'
 gem 'select2-rails', '~> 3.5.9'
 
+gem 'ratom', '~> 0.9.0'
+
 group :development do
   gem 'pry'
   # gem "guard"
-  # gem 'guard-livereload', '~> 2.4', require: false
-  # gem "rack-livereload"
+  gem 'guard-livereload', '~> 2.4', require: false
+  gem "rack-livereload"
 end
 
 #gem "elasticsearch-persistence", require: 'elasticsearch/persistence/model', '~> 0.1.7'

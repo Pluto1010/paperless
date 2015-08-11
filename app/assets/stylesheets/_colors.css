@@ -1,0 +1,125 @@
+.fa {
+  &.color {
+    width: 1em;
+    height: 1em;
+    vertical-align: -15%;
+  }
+
+  &.color-crimson {
+    background-color: #DC143C;
+  }
+  &.color-red {
+    background-color: #FF0000;
+  }
+  &.color-darkred {
+    background-color: #8B0000;
+  }
+  &.color-hotpink {
+    background-color: #FF69B4;
+  }
+  &.color-deeppink {
+    background-color: #FF1493;
+  }
+  &.color-mediumvioletred {
+    background-color: #C71585;
+  }
+  &.color-lightsalmon {
+    background-color: #FFA07A;
+  }
+  &.color-coral {
+    background-color: #FF7F50;
+  }
+  &.color-orangered {
+    background-color: #FF4500;
+  }
+  &.color-orange {
+    background-color: #FFA500;
+  }
+  &.color-gold {
+    background-color: #FFD700;
+  }
+  &.color-darkkhaki {
+    background-color: #BDB76B;
+  }
+  &.color-lavender {
+    background-color: #E6E6FA;
+  }
+  &.color-plum {
+    background-color: #DDA0DD;
+  }
+  &.color-violet {
+    background-color: #EE82EE;
+  }
+  &.color-magenta {
+    background-color: #FF00FF;
+  }
+  &.color-blueviolet {
+    background-color: #8A2BE2;
+  }
+  &.color-purple {
+    background-color: #800080;
+  }
+  &.color-indigo {
+    background-color: #4B0082;
+  }
+  &.color-slateblue {
+    background-color: #6A5ACD;
+  }
+  &.color-darkslateblue {
+    background-color: #483D8B;
+  }
+  &.color-lime {
+    background-color: #00FF00;
+  }
+  &.color-limegreen {
+    background-color: #32CD32;
+  }
+  &.color-palegreen {
+    background-color: #98FB98;
+  }
+  &.color-mediumseagreen {
+    background-color: #3CB371;
+  }
+  &.color-green {
+    background-color: #008000;
+  }
+  &.color-paleturquoise {
+    background-color: #AFEEEE;
+  }
+  &.color-darkturquoise {
+    background-color: #00CED1;
+  }
+  &.color-cadetblue {
+    background-color: #5F9EA0;
+  }
+  &.color-steelblue {
+    background-color: #4682B4;
+  }
+  &.color-lightsteelblue {
+    background-color: #B0C4DE;
+  }
+  &.color-skyblue {
+    background-color: #87CEEB;
+  }
+  &.color-deepskyblue {
+    background-color: #00BFFF;
+  }
+  &.color-dodgerblue {
+    background-color: #1E90FF;
+  }
+  &.color-mediumblue {
+    background-color: #0000CD;
+  }
+  &.color-navy {
+    background-color: #008;
+  }
+  &.color-silver {
+    background-color: #C0C0C0;
+  }
+  &.color-gray {
+    background-color: #808080;
+  }
+  &.color-black {
+    background-color: #000;
+  }
+}

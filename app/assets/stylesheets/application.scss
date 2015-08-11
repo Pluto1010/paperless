@@ -11,8 +11,6 @@
  * file per style scope.
  *
  *= require select2
- *= require_tree .
- *= require_self
  *
  */
 
@@ -20,118 +18,51 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "colors";
+@import "boxfile-font";
+@import "menu";
 
 [class^='select2'] {
   border-radius: 0px !important;
 }
 
-aside {
-  padding: 10px;
+span.document_count {
+  margin-right: 1em;
+}
 
-  ul.tag-list {
-    list-style: none;
-    li {
-      clear:both;
-      padding: 0 rem-calc(8);
+.select2-container {
+  margin-bottom: 1em;
 
-      &.highlight {
-        //background-color: scale-color($sidebar-bg-color, $lightness: 50%);
-      }
+  > a {
+    padding: rem-calc(8);
+  }
 
-      label {
-        //color: $sidebar-font-color;
-      }
+  .select2-choice {
+    height: 2.3125rem;
 
-      span.document_count {
-        margin-right: 1em;
-      }
+    > .select2-chosen {
+      padding-top: rem-calc(4);
     }
   }
 
-
-
-  .select2-container {
-    margin-bottom: 1em;
-
-    > a {
-      padding: rem-calc(8);
-    }
-
-    .select2-choice {
-      height: 2.3125rem;
-
-      > .select2-chosen {
-        padding-top: rem-calc(4);
-      }
-    }
-
-    .select2-arrow {
-      b {
-        background-position-y: rem-calc(6);
-      }
+  .select2-arrow {
+    b {
+      background-position-y: rem-calc(6);
     }
   }
 }
 
-@media #{$small-up} {
-  ul.tag-list {
-    -webkit-column-count: 1; /* Chrome, Safari, Opera */
-    -moz-column-count: 1; /* Firefox */
-    column-count: 1;
-  }
-}
-@media #{$medium-up} {
-  ul.tag-list {
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
-  }
-}
 
-@media #{$large-up} {
-  ul.tag-list {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-  }
-}
-
-
-main {
+#main {
   .document-image {
     margin-top: 1em;
     border: 1pt solid $sidebar-bg-color;
   }
 }
 
-// main {
-//   float: left;
-//   margin-left: 285px;
-//   padding: 0;
-//   width: -moz-calc(100% - #{270px});
-//   width: -webkit-calc(100% - #{270px});
-//   width: -o-calc(100% - #{270px});
-//   width: calc(100% - #{270px});
-
-//   position: relative;
-//   height: -moz-calc(100% + #{$topbar-height});
-//   height: -webkit-calc(100% + #{$topbar-height});
-//   height: -o-calc(100% + #{$topbar-height});
-//   height: calc(100% + #{$topbar-height});
-//   overflow-y: scroll;
-// }
-
-
 @media #{$small-up} {
   select.tags {
     display: none;
-  }
-
-  div.tags {
-    span.label {
-      margin-right: 2px;
-      cursor: pointer
-    }
   }
 
   .tag-input {
@@ -151,17 +82,4 @@ main {
       }
     }
   }
-}
-
-.tags {
-  @include label(
-    // This options sets label padding
-    $padding:7px 16px 9px,
-    // This option sets label text-size
-    $text-size:13px,
-    // This option sets label background-color
-    $bg:#2ba6cb,
-    // This option sets the radius of the label
-    $radius:4px
-  );
 }

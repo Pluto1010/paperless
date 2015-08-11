@@ -117,15 +117,15 @@ $row-width: 100%;
 // $black       : #000000;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$primary-color: #8F30BF;
+$secondary-color: #52A3CC;
+$alert-color: #f04124;
+$success-color: #6EC0C1;
+$warning-color: #f08a24;
+$info-color: #A878BF;
 
 // We use these to control various global styles
-// $body-bg: $white;
+$body-bg: #fff;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -836,8 +836,9 @@ $row-width: 100%;
 // Off Canvas Tab Bar Variables
 // $include-html-off-canvas-classes: $include-html-classes;
 
+$tabbar-bg: $primary-color;
 // $tabbar-bg: $oil;
-// $tabbar-height: rem-calc(45);
+$tabbar-height: rem-calc(45);
 // $tabbar-icon-width: $tabbar-height;
 // $tabbar-line-height: $tabbar-height;
 // $tabbar-color: $white;
@@ -856,24 +857,27 @@ $row-width: 100%;
 
 // Off Canvas Menu Variables
 // $off-canvas-width: rem-calc(250);
-// $off-canvas-bg: $oil;
+$off-canvas-bg: darken($body-bg, 5%);
 // $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
 // $off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%);
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: .3rem rem-calc(15);
+$off-canvas-label-color: #333333;
 // $off-canvas-label-color: $aluminum;
 // $off-canvas-label-text-transform: uppercase;
 // $off-canvas-label-font-size: rem-calc(12);
 // $off-canvas-label-font-weight: $font-weight-bold;
+$off-canvas-label-bg: $info-color;
 // $off-canvas-label-bg: $tuatara;
 // $off-canvas-label-border-top: 1px solid scale-color($off-canvas-label-bg, $lightness: 14%);
 // $off-canvas-label-border-bottom: none;
 // $off-canvas-label-margin:0;
 // $off-canvas-link-padding: rem-calc(10, 15);
 // $off-canvas-link-color: rgba($white, .7);
+$off-canvas-link-color: rgba($off-canvas-label-color, .7);
 // $off-canvas-link-border-bottom: 1px solid scale-color($off-canvas-bg, $lightness: -25%);
-// $off-canvas-back-bg: #444;
+$off-canvas-back-bg: $primary-color;
 // $off-canvas-back-border-top: $off-canvas-label-border-top;
 // $off-canvas-back-border-bottom: $off-canvas-label-border-bottom;
 // $off-canvas-back-hover-bg: scale-color($off-canvas-back-bg, $lightness: -30%);
@@ -904,6 +908,7 @@ $row-width: 100%;
 
 // Transition Variables
 // $menu-slide: "transform 500ms ease";
+$menu-slide: "transform 250ms ease";
 
 // 19. Orbit
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1401,8 +1406,9 @@ $row-width: 100%;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
+$topbar-bg-color: $primary-color;
 // $topbar-bg-color: $oil;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: rem-calc(45);
@@ -1490,3 +1496,5 @@ $row-width: 100%;
 
 $sidebar-bg-color: #2A2222;
 $sidebar-font-color: $ghost;
+
+@import 'bottombar';
