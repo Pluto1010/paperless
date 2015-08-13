@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require fastclick/lib/fastclick
 //= require foundation
-//= require jquery-zoom/jquery.zoom
 //= require select2
 //= require_tree .
 
