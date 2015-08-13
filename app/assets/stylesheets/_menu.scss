@@ -8,7 +8,6 @@ div.off-canvas-wrap {
     .icon-boxfile {
       font-size: 1.25rem;
       line-height: 1.35rem;
-      color: $white;
     }
   }
   section.middle.tab-bar-section > * {
@@ -23,6 +22,22 @@ div.off-canvas-wrap {
 
     ul > li.back > a {
       color: white;
+    }
+    ul:last-child {
+      margin-bottom: 1rem;
+    }
+
+    ul.button-group {
+      li {
+        width: 50%;
+      }
+      a, button {
+        padding: .75rem 0 .75rem 0;
+        margin: 0;
+        border: 0;
+        width: 100%;
+        display: block;
+      }
     }
   }
 
@@ -48,15 +63,21 @@ div.off-canvas-wrap {
     }
   }
 
-  ul > li > a.button.clear {
-    border-bottom: none;
-    border-top: $off-canvas-link-border-bottom;
+  ul > li > a {
+    &:hover {
+      background: $off-canvas-bg-hover;
+      color: white;
+    }
+    &:active {
+      background: $off-canvas-bg-active;
+      color: white;
+    }
   }
 }
 
 aside.right-off-canvas-menu ul.tags {
     overflow-y: auto;
-    height: 60vh;
+    height: 40vh;
 
   > input[type=checkbox] {
     display: none;
@@ -89,6 +110,15 @@ aside.right-off-canvas-menu ul.tags {
       margin: 0;
       font-weight: normal;
       font-size: 1rem;
+
+      &:hover {
+        background: $off-canvas-bg-hover;
+        color: white;
+      }
+      &:active {
+        background: $off-canvas-bg-active;
+        color: white;
+      }
     }
 
     .label {

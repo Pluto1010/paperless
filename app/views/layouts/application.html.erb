@@ -35,8 +35,9 @@
         <aside class="right-off-canvas-menu">
           <ul class="off-canvas-list">
             <%= yield :rightoff %>
-            <li><label>Main menu</label></li>
+            <li><label><i class="fa fa-chevron-down fa-fw fa-lg"></i>Main menu</label></li>
             <li><%= link_to raw('<i class="fa fa-upload fa-lg fa-fw"></i>Upload document'), new_document_path %></li>
+            <li><%= link_to raw('<i class="fa fa-wrench fa-lg fa-fw"></i>Settings') %></li>
           </ul>
         </aside>
 

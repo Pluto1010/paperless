@@ -3,7 +3,7 @@
     <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
     <div class="row collapse">
       <div class="large-8 small-9 columns">
-        <input type="text" placeholder="Find Stuff">
+        <input type="text" placeholder="Find stuff...">
       </div>
       <div class="large-4 small-3 columns">
         <a href="#" class="button expand"><i class="fa fa-search fa-lg fa-fw"></i>Go</a>
@@ -11,20 +11,24 @@
     </div>
     <% end %>
   </li>
+  <li style="margin-top: 1rem"><label><i class="fa fa-search fa-fw fa-lg"></i>Filter by label</label></li>
   <li class="has_form">
     <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
-      <button type="submit" class="button expand apply" style="margin-bottom: 0">
-        <i class="fa fa-filter fa-lg fa-fw"></i>Apply filter
-      </button>
       <ul class="off-canvas-list tags fa-ul">
         <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, checked: @search_param_tag_ids do |b| %>
           <%= b.check_box %>
           <li class="tag"><%= b.label %><span class="round label info document_count"><%= Tag.find(b.value).documents.count %></span></li>
         <% end %>
       </ul>
-      <ul class="off-canvas-list fa-ul">
+
+      <ul class="button-group">
         <li>
           <a href="#" class="button secondary expand clear"><i class="fa fa-remove fa-lg fa-fw"></i>Clear</a>
+        </li>
+        <li>
+          <button type="submit" class="button expand apply" style="margin-bottom: 0">
+            <i class="fa fa-filter fa-lg fa-fw"></i>Apply
+          </button>
         </li>
       </ul>
     <% end %>
@@ -37,7 +41,7 @@
 <div class="row">
   <div class="large-12 columns">
     <p id="notice"><%= notice %></p>
-    <div class="small-12 text-center"><span class="round label info"><%= @documents.count %> documents</span><br/>&nbsp;</div>
+    <div class="small-12 text-center"><span class="round label secondary"><%= @documents.count %> documents</span><br/>&nbsp;</div>
     <ul class="small-block-grid-1">
       <% @documents.each do |document| %>
       <li class="document-box">
