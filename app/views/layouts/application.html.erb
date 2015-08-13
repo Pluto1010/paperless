@@ -21,6 +21,10 @@
     <div class="off-canvas-wrap" data-offcanvas>
       <div class="inner-wrap">
         <nav class="tab-bar top-bar" data-topbar>
+          <section class="left-small hide-large-up">
+            <%= link_to raw('<i class="fa fa-home fa-lg fa-fw"></i>'), root_path, class: 'home-icon' %>
+          </section>
+
           <section class="middle tab-bar-section">
             <%= link_to(root_path) do -%>
             <i class="icon-boxfile"></i><h1 class="title">boxfile</h1><div><%= yield :title %></div>

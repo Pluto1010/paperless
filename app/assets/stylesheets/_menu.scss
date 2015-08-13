@@ -1,6 +1,10 @@
 div.off-canvas-wrap {
   min-height: 100vh;
 
+  section.left-small {
+    text-indent: 0.35rem;
+  }
+
   section.middle.tab-bar-section {
     > a {
       display: block;
