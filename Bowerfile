@@ -5,3 +5,4 @@
 
 asset 'jquery-zoom', github: 'Pluto1010/zoom', ref: '1.7.14'
 asset 'multilevelpushmenu', github: 'Pluto1010/multi-level-push-menu', ref: 'swipefix'
+asset 'fastclick', '1.0.6'

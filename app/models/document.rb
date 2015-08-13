@@ -8,8 +8,8 @@ class Document < ActiveRecord::Base
   has_and_belongs_to_many :tags, join_table: :document_has_tags
 
   has_attached_file :attachment, :styles => {
-  	:small => [{ width: 425, height: 300 }, :jpg],
-  	:large => [{ width: 2048, height: 1450 }, :jpg]
+  	:small => [{ width: 425, height: 600 }, :jpg],
+  	:large => [{ width: 1024, height: 1450 }, :jpg]
   }, :processors => [:pdf_thumbnail]
   validates_attachment_content_type :attachment, :content_type => /\Aapplication\/pdf\Z/
 

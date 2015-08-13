@@ -16,12 +16,12 @@ module Paperclip
       # load PDF
       pdf = ::Magick::ImageList.new File.expand_path(@file.path) do
         self.format = 'PDF'
-        self.quality = 75
+        self.quality = 85
         self.density = 200
       end
 
-      # load first and second page and put them together. horizontal
-      image = pdf[0..1].append(false)
+      # load first horizontal
+      image = pdf[0]
 
       # correct
       image.trim!
