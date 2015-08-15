@@ -40,19 +40,28 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <p id="notice"><%= notice %></p>
-    <div class="small-12 text-center"><span class="round label secondary"><%= @documents.count %> documents</span><br/>&nbsp;</div>
-    <ul class="small-block-grid-1">
-      <% @documents.each do |document| %>
-      <li class="document-box">
-        <span class="label info"><%= document.created_at %></span>
-        <%= link_to edit_document_path(document) do %>
-        <div class="document">
-          <%= image_tag document.attachment.url(:small), size: '800', alt: 'Alt Image Text', data: {
-            'big': document.attachment.url(:large)
-          } %>
+    <div class="small-12 text-center"><span class="round label secondary"><%= @documents_count %> documents</span><br/>&nbsp;</div>
+
+    <ul class="accordion documents-list" data-accordion>
+      <% @documents.each do |actual_month, documents_by_month| %>
+      <li class="accordion-navigation">
+        <a href="#document-list-block-<%=actual_month.strftime('%Y%m')%>" class="label primary"><%= actual_month.strftime('%Y %B') %></a>
+        <div id="document-list-block-<%=actual_month.strftime('%Y%m')%>" class="content">
+          <ul class="small-block-grid-1">
+            <% documents_by_month.each do |document| %>
+            <li class="document-box">
+              <span class="label info"><%= document.created_at %></span>
+              <%= link_to edit_document_path(document) do %>
+              <div class="document">
+                <%= image_tag document.attachment.url(:small), size: '800', alt: 'Alt Image Text', data: {
+                  'big': document.attachment.url(:large)
+                } %>
+              </div>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
         </div>
-        <% end %>
       </li>
       <% end %>
     </ul>

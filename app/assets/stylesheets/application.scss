@@ -63,6 +63,12 @@ li.document-box > span.label {
     border: 1pt solid $sidebar-bg-color;
   }
 }
+ul.documents-list {
+  margin-left: 0;
+  > li > a {
+    border-bottom: 1px solid #CCC;
+  }
+}
 
 @media #{$small-up} {
   select.tags {

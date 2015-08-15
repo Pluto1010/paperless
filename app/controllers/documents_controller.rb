@@ -18,10 +18,15 @@ class DocumentsController < ApplicationController
     end
 
     if @search_param_tag_ids.count == 0
-      @documents = Document.by_date
+      all_documents = Document.by_date
+      @documents_count = all_documents.count
+      @documents = documents_by_month(all_documents)
+
       session[:document_search_filter] = nil
     else
-      @documents = Document.filter_by_tag_ids(@search_param_tag_ids)
+      all_documents = Document.filter_by_tag_ids(@search_param_tag_ids)
+      @documents_count = all_documents.count
+      @documents = documents_by_month(all_documents)
       session[:document_search_filter] = @search_param_tag_ids
     end
   end
@@ -130,6 +135,17 @@ class DocumentsController < ApplicationController
   end
 
   private
+
+    def documents_by_month(all_documents)
+      documents_by_month = {}
+      all_documents.each do |document|
+        actual_month = document.created_at.beginning_of_month
+        documents_by_month[actual_month] = [] if not documents_by_month[actual_month].kind_of?(Array)
+        documents_by_month[actual_month] << document
+      end
+      documents_by_month
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
