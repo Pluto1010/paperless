@@ -7,11 +7,11 @@ update-rc.d chef-client disable
 service puppet stop
 update-rc.d puppet disable
 
-if [ "$[$(date +%s) - $(stat -c %Z /var/lib/apt/periodic/update-success-stamp)]" -ge 86400 ]; then
+if [ ! -f /var/lib/apt/periodic/update-success-stamp -o "$[$(date +%s) - $(stat -c %Z /var/lib/apt/periodic/update-success-stamp)]" -ge 86400 ]; then
   apt-get update
 fi
 
-apt-get install -y openjdk-7-jre default-jre-headless supervisor htop elasticsearch
+apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" openjdk-7-jre default-jre-headless supervisor htop elasticsearch
 
 cd /opt
 
@@ -96,4 +96,4 @@ service elasticsearch restart
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.2 --with-gems="bundler"
-su - vagrant -s -c "rvm user gemsets"
+su -l -c "rvm user gemsets" vagrant

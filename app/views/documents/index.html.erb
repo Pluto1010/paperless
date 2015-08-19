@@ -3,7 +3,7 @@
     <%= form_for @search_document, method: :GET, html: { data: { } } do |f| %>
     <div class="row collapse">
       <div class="large-8 small-9 columns">
-        <input type="text" placeholder="Find stuff...">
+        <%= f.search_field :search, 'Find your stuff...' %>
       </div>
       <div class="large-4 small-3 columns">
         <a href="#" class="button expand"><i class="fa fa-search fa-lg fa-fw"></i>Go</a>
@@ -50,7 +50,7 @@
           <ul class="small-block-grid-1">
             <% documents_by_month.each do |document| %>
             <li class="document-box">
-              <span class="label info"><%= document.created_at %></span>
+              <span class="label info"><%= document.received_at %></span>
               <%= link_to edit_document_path(document) do %>
               <div class="document">
                 <%= image_tag document.attachment.url(:small), size: '800', alt: 'Alt Image Text', data: {

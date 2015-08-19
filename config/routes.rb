@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     member do
       post 'add_new_tag'
     end
+    collection do
+      post 'create_from_camera'
+    end
   end
 
   root 'documents#index'

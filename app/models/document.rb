@@ -13,9 +13,9 @@ class Document < ActiveRecord::Base
   }, :processors => [:pdf_thumbnail]
   validates_attachment_content_type :attachment, :content_type => /\Aapplication\/pdf\Z/
 
-  after_commit :extract_text_from_pdf
+  #after_commit :extract_text_from_pdf
 
-  scope :by_date, -> { order('created_at DESC, id DESC') }
+  scope :by_received_date, -> { order('received_at ASC, id DESC') }
 
   def self.filter_by_tag_ids(tag_ids)
     document_ids = nil;

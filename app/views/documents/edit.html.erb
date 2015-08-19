@@ -1,5 +1,11 @@
 <% content_for :rightoff do %>
   <ul class="off-canvas-list fa-ul">
+    <li><label>Received at</label></li>
+    <li class="has-form">
+      <%= form_for @document do |f| %>
+        <%= f.date_field :received_at %>
+      <% end %>
+    </li>
     <li><label>Document actions</label></li>
     <li><%= link_to 'Download', @document.attachment.url, class: ''%></li>
     <li><%= link_to 'Delete', @document, class: 'alert', method: :delete, data: { confirm: 'Are you sure?' } %></li>

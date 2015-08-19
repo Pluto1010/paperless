@@ -1,19 +1,35 @@
-<%= form_for @document, :url => documents_path, :html => { :multipart => true } do |f| %>
-  <% if @document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
+<ul class="tabs" data-tab role="tablist">
+  <li class="tab-title active" role="presentation"><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" aria-controls="panel2-1">Camera</a></li>
+  <li class="tab-title" role="presentation"><a href="#panel2-2" role="tab" tabindex="0" aria-selected="false" aria-controls="panel2-2">File</a></li>
+</ul>
+<div class="tabs-content">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+    <%= form_for :document_from_camera, :url => create_from_camera_documents_path, :html => { :multipart => true } do |f| %>
+      <ol id="pages">
+      </ol>
+      <%= f.button 'Add another page', class: 'button tiny secondary add-page' %>
+      <%= f.submit %>
+    <% end %>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+    <%= form_for @document, :url => documents_path, :html => { :multipart => true } do |f| %>
+      <% if @document.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
 
-      <ul>
-      <% @document.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @document.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <h2>Local file</h2>
+      <%= f.file_field :attachment, accept: 'application/pdf' %>
 
-  <%= f.file_field :attachment %>
-
-  <div class="actions">
-    <%= f.submit class: "button success" %>
-  </div>
-<% end %>
+      <div class="actions">
+        <%= f.submit class: "button primary" %>
+      </div>
+    <% end %>
+  </section>
+</div>

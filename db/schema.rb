@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628072622) do
+ActiveRecord::Schema.define(version: 20150816110538) do
 
   create_table "document_has_tags", force: :cascade do |t|
     t.integer  "document_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150628072622) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.text     "text"
+    t.date     "received_at"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
     end
 
     if @search_param_tag_ids.count == 0
-      all_documents = Document.by_date
+      all_documents = Document.by_received_date
       @documents_count = all_documents.count
       @documents = documents_by_month(all_documents)
 
@@ -46,6 +46,13 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+  end
+
+
+  # POST /documents/create_from_camera
+  # POST /documents/create_from_camera.json
+  def create_from_camera
+
   end
 
   # POST /documents
@@ -139,7 +146,11 @@ class DocumentsController < ApplicationController
     def documents_by_month(all_documents)
       documents_by_month = {}
       all_documents.each do |document|
-        actual_month = document.created_at.beginning_of_month
+        if document.received_at != nil
+          actual_month = document.received_at.beginning_of_month
+        else
+          actual_month = document.created_at.beginning_of_month
+        end
         documents_by_month[actual_month] = [] if not documents_by_month[actual_month].kind_of?(Array)
         documents_by_month[actual_month] << document
       end
