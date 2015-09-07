@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "boxfile" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "paperless" %></title>
 
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -27,7 +27,7 @@
 
           <section class="middle tab-bar-section">
             <%= link_to(root_path) do -%>
-            <i class="icon-boxfile"></i><h1 class="title">boxfile</h1><div><%= yield :title %></div>
+            <i class="icon-paperless"></i><h1 class="title">paperless</h1><div><%= yield :title %></div>
             <% end %>
           </section>
 

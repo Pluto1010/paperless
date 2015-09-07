@@ -1,4 +1,4 @@
-window.boxfile = (function() {
+window.paperless = (function() {
   var actions = {};
 
   function register_action(page, action_func) {

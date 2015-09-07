@@ -41,7 +41,7 @@ class Document < ActiveRecord::Base
       return
     end
 
-    dst = Tempfile.new(['boxfile_doc', '.pdf'])
+    dst = Tempfile.new(['paperless_doc', '.pdf'])
     dst.binmode
 
     begin

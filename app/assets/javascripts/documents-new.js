@@ -1,4 +1,4 @@
-boxfile.action('documents#new', function() {
+paperless.action('documents#new', function() {
   // window.setTimeout(function() {
   //   $('div.off-canvas-wrap').foundation('offcanvas', 'show', 'move-left');
   // }, 500);

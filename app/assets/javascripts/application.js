@@ -35,5 +35,5 @@ $(function(){
     }
   });
 
-  boxfile.run($('body').data('page'));
+  paperless.run($('body').data('page'));
 });
