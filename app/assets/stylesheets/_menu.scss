@@ -1,3 +1,8 @@
+.fixedstickybottom {
+  position: fixed;
+  position: sticky;
+  bottom: 0;
+}
 div.off-canvas-wrap {
   min-height: 100vh;
 

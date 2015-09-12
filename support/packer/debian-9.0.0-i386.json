@@ -1,0 +1,52 @@
+{
+  "builders": [{
+    "type": "virtualbox-iso",
+    "guest_os_type": "Debian",
+    "iso_url": "http://cdimage.debian.org/cdimage/stretch_di_alpha2/i386/iso-cd/debian-mac-stretch-DI-alpha2-i386-netinst.iso",
+    "iso_checksum": "16455edc8e189a97beded7a01a852bab4ef170f23b6b75ca6b61eea71e442ed8",
+    "iso_checksum_type": "sha256",
+    "output_directory": "output-debian-9.0.0-i386",
+    "vm_name": "packer-debian-9.0.0-i386",
+    "disk_size": "{{user `disk_size`}}",
+    "headless": "{{user `headless`}}",
+    "http_directory": "http",
+    "boot_wait": "5s",
+    "boot_command": [
+      "<esc><wait>",
+      "auto ",
+      "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/debian-9.0.0/preseed.cfg ",
+      "<enter>"
+    ],
+    "ssh_wait_timeout": "60m",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "shutdown_command": "sudo poweroff",
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}"],
+      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpus`}}"]
+    ]
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "scripts": [
+      "scripts/debian/virtualbox.sh",
+      "scripts/common/vagrant.sh",
+      "scripts/common/sshd.sh",
+      "scripts/debian/cleanup.sh",
+      "scripts/common/minimize.sh"
+    ]
+  }],
+  "post-processors": [{
+    "type": "vagrant",
+    "compression_level": "{{user `compression_level`}}",
+    "output": "debian-9.0.0-i386.box"
+  }],
+  "variables": {
+    "compression_level": "6",
+    "cpus": "4",
+    "disk_size": "4000",
+    "headless": "false",
+    "memory": "448",
+    "mirror": "http://cdimage.debian.org/debian-cd"
+  }
+}
