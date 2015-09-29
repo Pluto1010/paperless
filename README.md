@@ -12,7 +12,7 @@ Paperless by Dennis Schulz is licensed under a [Creative Commons Attribution-Non
 
 > `gem install bundler`
 > 
-> `npm install`
+> `npm install bower -g`
 > 
 > `rake bower:install`
 

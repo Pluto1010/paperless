@@ -31,7 +31,7 @@ module Paperclip
       geometry = @options[:geometry]
       image.resize_to_fit! geometry[:width], geometry[:height]
 
-      image.background_color = "lightgrey"
+      image.background_color = "white"
       image.gravity = Magick::CenterGravity
       image = image.extent geometry[:width], geometry[:height]
 

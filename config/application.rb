@@ -2,11 +2,12 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'atom'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Akten
+module Paperless
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -22,7 +23,7 @@ module Akten
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
+    config.active_job.queue_adapter = :delayed_job  # Or :resque or :sidekiq
     config.tag_colors = {
       crimson: 'Crimson',
       red: 'Red',
@@ -64,5 +65,11 @@ module Akten
       gray: 'Gray',
       black: 'Black'
     }
+
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+      map '/document-status' => RealtimeDocumentStatusController
+      map default: :block
+    end
   end
 end

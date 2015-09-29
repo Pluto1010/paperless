@@ -5,3 +5,4 @@
 
 asset 'fastclick', '1.0.6'
 asset 'jquery', '2.1.4'
+asset 'd3', '3.5.6'

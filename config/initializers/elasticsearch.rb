@@ -1,3 +1,5 @@
+require 'yaml'
+
 config = {
   host: "http://localhost:9200/",
   transport_options: {

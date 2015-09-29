@@ -35,7 +35,8 @@ class DocumentsController < ApplicationController
   # GET /documents/1.json
   def show
     respond_to do |format|
-      format.json { render :show }
+      format.html { render :show }
+      format.json { render json: @document }
     end
   end
 
@@ -52,17 +53,15 @@ class DocumentsController < ApplicationController
   # POST /documents/create_from_camera
   # POST /documents/create_from_camera.json
   def create_from_camera
-
   end
 
   # POST /documents
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
