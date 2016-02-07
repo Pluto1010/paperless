@@ -12,6 +12,7 @@ class Document < ActiveRecord::Base
   	:large => [{ width: 1024, height: 1450 }, :jpg]
   }, :processors => [:pdf_thumbnail]
   validates_attachment_content_type :attachment, :content_type => /\Aapplication\/pdf\Z/
+  process_in_background :attachment
 
   #after_commit :extract_text_from_pdf
 

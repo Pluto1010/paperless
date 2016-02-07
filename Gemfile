@@ -55,7 +55,8 @@ gem 'font-awesome-sass', '~> 4.3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+#gem 'unicorn', '~> 4.9.0'
+gem 'thin', '~> 1.6.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -71,3 +72,8 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'delayed_job_active_record', '~> 4.0.3'
+gem 'daemons', '~> 1.2.3'
+gem 'foreman', '~> 0.78'
+gem 'faye-rails', '~> 2.0.1'
+gem 'delayed_paperclip', '~> 2.9.1'

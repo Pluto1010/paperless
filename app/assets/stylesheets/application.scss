@@ -56,6 +56,13 @@ li.document-box > span.label {
   }
 }
 
+div.row > div.columns {
+  padding: 0 0;
+
+  ul.documents-list > li > div {
+    padding: 0 0;
+  }
+}
 
 #main {
   .document-image {

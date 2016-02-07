@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816110538) do
+ActiveRecord::Schema.define(version: 20150915053333) do
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "document_has_tags", force: :cascade do |t|
     t.integer  "document_id"
@@ -31,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150816110538) do
     t.datetime "attachment_updated_at"
     t.text     "text"
     t.date     "received_at"
+    t.boolean  "attachment_processing"
   end
 
   create_table "tags", force: :cascade do |t|

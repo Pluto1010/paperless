@@ -37,8 +37,11 @@ paperless.action('documents#new', function() {
       );
   }
 
-  var pagesContainer = $('section#panel2-1 > ol#pages');
+  var pagesContainer = $('section#panel2-1 ol#pages');
+  console.log("pagesContainer", pagesContainer);
   $('.button.add-page').click(function() {
-    pagesContainer.append(createPageInput('camera', 'image/png,image/jpg,image/jpeg'));
+    var el = createPageInput('camera', 'image/png,image/jpg,image/jpeg')
+    console.log(el);
+    pagesContainer.append(el);
   }).click();
 });
